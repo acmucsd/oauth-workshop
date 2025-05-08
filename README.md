@@ -1,5 +1,6 @@
 # oauth-workshop
-Starter code for ACM Hack's Authentication Workshop
+Starter code for ACM Hack's [(Authentication Workshop)](https://acmurl.com/oauth-slides)
+
 # Google Oauth
 Created by Kris Foster [(Video)](https://www.youtube.com/watch?v=Q0a0594tOrc)
 
