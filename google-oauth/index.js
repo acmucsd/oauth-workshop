@@ -7,6 +7,7 @@ const app = express();
 
 function isLoggedIn(req, res, next) {
   //TODO Activity 3
+  req.user ? next() : res.sendStatus(401);
 }
 
 app.use(session({ secret: 'cats', resave: false, saveUninitialized: true }));
@@ -19,10 +20,15 @@ app.get('/', (req, res) => {
 
 app.get('/auth/google',
   //TODO Activity 2
-);
+  passport.authenticate('google', { scope: [ 'email', 'profile' ] }
+));
 
 app.get( '/auth/google/callback',
   //TODO Activity 2
+  passport.authenticate( 'google', {
+    successRedirect: '/protected',
+    failureRedirect: '/auth/google/failure'
+  })
 );
 
 app.get('/protected', isLoggedIn, (req, res) => {
@@ -31,6 +37,9 @@ app.get('/protected', isLoggedIn, (req, res) => {
 
 app.get('/logout', (req, res) => {
   //TODO Activity 2
+  req.logout();
+  req.session.destroy();
+  res.send('Goodbye!');
 });
 
 app.get('/auth/google/failure', (req, res) => {

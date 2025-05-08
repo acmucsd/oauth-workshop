@@ -8,6 +8,10 @@ const GOOGLE_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET;
 
 passport.use(new GoogleStrategy({
 //TODO Activity 2
+  clientID: process.env.GOOGLE_CLIENT_ID,
+  clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+  callbackURL: "http://localhost:5000/auth/google/callback",
+  passReqToCallback: true,
 },
 function(request, accessToken, refreshToken, profile, done) {
   return done(null, profile);
